@@ -10,71 +10,65 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @Environment(\.scenePhase) private var scenePhase
+    @Query(sort: \Birthday.date) private var birthdays: [Birthday]
+    @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
+    /// Own presentation state avoids an inverted `Binding` on `fullScreenCover`, which can stick out of sync with `AppStorage` on some OS versions.
+    @State private var showOnboarding = !UserDefaults.standard.bool(forKey: "hasSeenOnboarding")
 
     var body: some View {
-        NavigationViewWrapper {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
+        TabView {
+            BirthdayListView()
+                .tabItem {
+                    Label("Birthdays", systemImage: "gift.fill")
                 }
-                .onDelete(perform: deleteItems)
-            }
-#if os(macOS)
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-#endif
-            .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+
+            CountdownView()
+                .tabItem {
+                    Label("Countdown", systemImage: "timer")
                 }
-#endif
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
+
+            CardCreatorView()
+                .tabItem {
+                    Label("Cards", systemImage: "envelope.fill")
                 }
+
+            PartyPlannerView()
+                .tabItem {
+                    Label("Party", systemImage: "party.popper.fill")
+                }
+        }
+        .tint(.pink)
+        .onAppear {
+            if hasSeenOnboarding { showOnboarding = false }
+        }
+        .onChange(of: hasSeenOnboarding) { _, completed in
+            if completed { showOnboarding = false }
+        }
+        .fullScreenCover(isPresented: $showOnboarding) {
+            OnboardingView()
+        }
+        .task {
+            await BirthdayNotificationScheduler.rescheduleAll(birthdays: birthdays)
+            BirthdayWidgetWriter.update(from: birthdays)
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            guard newPhase == .active else { return }
+            Task {
+                await BirthdayNotificationScheduler.rescheduleAll(birthdays: birthdays)
             }
+            BirthdayWidgetWriter.update(from: birthdays)
         }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+        .onChange(of: birthdays.count) { _, _ in
+            Task {
+                await BirthdayNotificationScheduler.rescheduleAll(birthdays: birthdays)
             }
+            BirthdayWidgetWriter.update(from: birthdays)
         }
-    }
-}
-
-fileprivate struct NavigationViewWrapper<Content: View>: View {
-    let content: () -> Content
-
-    var body: some View {
-#if os(macOS)
-        NavigationSplitView {
-            content()
-        } detail: {
-            Text("Select an item")
-        }
-#else
-        content()
-#endif
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: [Birthday.self, PartyGuest.self, PartyTodo.self], inMemory: true)
 }

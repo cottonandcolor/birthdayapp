@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>The microphone is used to fill in name and date when you add a birthday by voice.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Speech is converted to text so you can add birthdays hands-free.</string>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>Add yearly birthday reminders to your calendar if you choose.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
