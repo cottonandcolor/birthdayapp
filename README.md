@@ -4,6 +4,16 @@ iOS app for birthdays: reminders, voice entry, countdown, cards, party planning,
 
 ## App Store Connect (copy/paste)
 
+### Privacy Policy URL (App Store → App Privacy)
+
+Use a link that works **without signing in** (reviewers must open it). Options:
+
+- **If the repo is public:**  
+  `https://github.com/cottonandcolor/birthdayapp/blob/main/docs/privacy-policy.md`
+- **If the repo stays private:** use a **public** GitHub Gist, or enable **Pages** on a **public** fork, or host the file on any public `https` site.
+
+Source files: `docs/privacy-policy.md` and `docs/privacy.html`.
+
 ### Works right now (private repo — no Pages)
 
 | Field | Value |
