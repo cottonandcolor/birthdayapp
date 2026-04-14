@@ -4,16 +4,25 @@ iOS app for birthdays: reminders, voice entry, countdown, cards, party planning,
 
 ## App Store Connect (copy/paste)
 
-After [GitHub Pages](https://pages.github.com/) is enabled for this repo (**Settings → Pages → Branch: `main` / folder: `/docs`**), use:
+### Works right now (private repo — no Pages)
 
 | Field | Value |
 |--------|--------|
-| **Support URL** | `https://cottonandcolor.github.io/birthdayapp/support.html` |
-| **Marketing URL** | `https://cottonandcolor.github.io/birthdayapp/` |
-| **Version** | `1.0` (must match Xcode **Marketing Version** for the build you submit) |
-| **Copyright** | `2026 Preeti Dave` (App Store single line; not “200” — use the year and rights holder name) |
+| **Support URL** | `https://github.com/cottonandcolor/birthdayapp/issues` |
+| **Marketing URL** | `https://github.com/cottonandcolor/birthdayapp` |
+| **Version** | `1.0` (same as Xcode **Marketing Version** for the submitted build) |
+| **Copyright** | `2026 Preeti Dave` (year + legal name; not a URL — “200” alone is invalid) |
 
-Pages URLs use the repo name: `https://cottonandcolor.github.io/birthdayapp/`.
+Apple accepts a GitHub repo and Issues as support if users can report problems there.
+
+### Nicer Pages URLs (optional)
+
+`docs/` contains **marketing** (`index.html`) and **support** (`support.html`). [GitHub Pages](https://pages.github.com/) is **not enabled** for this private repo on the current plan. To use:
+
+- **https://cottonandcolor.github.io/birthdayapp/** (marketing)  
+- **https://cottonandcolor.github.io/birthdayapp/support.html** (support)
+
+either **make the repository public** and turn on **Settings → Pages → Deploy from branch `main` / `/docs`**, or use a GitHub plan that includes Pages for private repos.
 
 ## Requirements
 
