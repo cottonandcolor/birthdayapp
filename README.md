@@ -1,38 +1,41 @@
-# Birthday
+# Birthday (birthdaycel)
 
 iOS app for birthdays: reminders, voice entry, countdown, cards, party planning, optional iCloud, and a Home Screen widget.
 
+## AdMob `app-ads.txt`
+
+Publisher line (already hosted at the developer site root):
+
+```text
+google.com, pub-2410550817953613, DIRECT, f08c47fec0942fa0
+```
+
+Live file AdMob must fetch:
+
+- https://cottonandcolor.github.io/app-ads.txt
+
+Also mirrored in this repo at `docs/app-ads.txt`.
+
+**Important:** Do **not** use `https://github.com/...` as the Marketing URL for AdMob. Google looks for `/app-ads.txt` on the **root domain**, and you cannot place that file on `github.com`.
+
 ## App Store Connect (copy/paste)
-
-### Privacy Policy URL (App Store → App Privacy)
-
-Use a link that works **without signing in** (reviewers must open it). Options:
-
-- **If the repo is public:**  
-  `https://github.com/cottonandcolor/birthdayapp/blob/main/docs/privacy-policy.md`
-- **If the repo stays private:** use a **public** GitHub Gist, or enable **Pages** on a **public** fork, or host the file on any public `https` site.
-
-Source files: `docs/privacy-policy.md` and `docs/privacy.html`.
-
-### Works right now (private repo — no Pages)
 
 | Field | Value |
 |--------|--------|
-| **Support URL** | `https://github.com/cottonandcolor/birthdayapp/issues` |
-| **Marketing URL** | `https://github.com/cottonandcolor/birthdayapp` |
-| **Version** | `1.0` (same as Xcode **Marketing Version** for the submitted build) |
-| **Copyright** | `2026 Preeti Dave` (year + legal name; not a URL — “200” alone is invalid) |
+| **Marketing URL** | `https://cottonandcolor.github.io` |
+| **Support URL** | `https://cottonandcolor.github.io/birthdayapp/support.html` |
+| **Privacy Policy URL** | `https://cottonandcolor.github.io/birthdayapp/privacy.html` |
+| **Copyright** | `2026 Preeti Dave` |
 
-Apple accepts a GitHub repo and Issues as support if users can report problems there.
+Birthday marketing pages (GitHub Pages from `/docs`):
 
-### Nicer Pages URLs (optional)
+- https://cottonandcolor.github.io/birthdayapp/
+- https://cottonandcolor.github.io/birthdayapp/support.html
+- https://cottonandcolor.github.io/birthdayapp/privacy.html
 
-`docs/` contains **marketing** (`index.html`) and **support** (`support.html`). [GitHub Pages](https://pages.github.com/) is **not enabled** for this private repo on the current plan. To use:
+Marketing URL stays on `https://cottonandcolor.github.io` so AdMob finds `app-ads.txt` at the domain root.
 
-- **https://cottonandcolor.github.io/birthdayapp/** (marketing)  
-- **https://cottonandcolor.github.io/birthdayapp/support.html** (support)
-
-either **make the repository public** and turn on **Settings → Pages → Deploy from branch `main` / `/docs`**, or use a GitHub plan that includes Pages for private repos.
+Changing Marketing / Support URL on a **Ready for Distribution** version requires a **new App Store version + new build**.
 
 ## Requirements
 
