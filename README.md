@@ -23,7 +23,7 @@ Also mirrored in this repo at `docs/app-ads.txt`.
 | Field | Value |
 |--------|--------|
 | **Marketing URL** | `https://cottonandcolor.github.io` |
-| **Support URL** | `https://cottonandcolor.github.io/birthdayapp/support.html` |
+| **Support URL** | `https://github.com/cottonandcolor/birthdayapp/issues` |
 | **Privacy Policy URL** | `https://cottonandcolor.github.io/birthdayapp/privacy.html` |
 | **Copyright** | `2026 Preeti Dave` |
 
